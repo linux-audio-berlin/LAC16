@@ -1,0 +1,98 @@
+This is the miniLAC schedule. Please read up on how to use the [[Template:Schedule|schedule template]], before filling in your timeslot(s).
+
+= Friday =
+Friday is planned as a meet-and-greet day. Arrive in the late afternoon/ early evening and grab a drink with us at [[c-base]].
+
+There is no program planned, but you can drop by after 20:00h.
+
+
+== Organisation ==
+This is the helper's table to organize shifts! [[Volunteer]]!
+
+We'll probably require help setting things up and doing last-minute arrangements!
+Expect to be able to help us from around 15:00h on.
+{{
+Schedule
+|day=Friday (20160408)
+|mainhall15=[[User:riot|riot]],[[User:dave|dave]],[[User:excds|excds]]
+|mainhall17=[[User:riot|riot]],[[User:dave|dave]],[[User:excds|excds]]
+|mainhall21=[[User:riot|riot]],[[User:dave|dave]],[[User:excds|excds]]
+|mainhall23=[[User:riot|riot]],[[User:dave|dave]],[[User:excds|excds]]
+|seminarroom15=[[User:riot|riot]],[[User:dave|dave]],[[User:excds|excds]]
+|seminarroom17=[[User:riot|riot]],[[User:dave|dave]],[[User:excds|excds]]
+|seminarroom21=[[User:riot|riot]],[[User:dave|dave]],[[User:excds|excds]]
+|seminarroom23=[[User:riot|riot]],[[User:dave|dave]],[[User:excds|excds]]
+|soundlab15=[[User:riot|riot]],[[User:dave|dave]],[[User:excds|excds]]
+|soundlab17=[[User:riot|riot]],[[User:dave|dave]],[[User:excds|excds]]
+|soundlab21=[[User:riot|riot]],[[User:dave|dave]],[[User:excds|excds]]
+|soundlab23=[[User:riot|riot]],[[User:dave|dave]],[[User:excds|excds]]
+}}
+
+= Saturday = 
+== Timetable ==
+{{
+Schedule
+|day=Saturday (20160409)
+|mainhall10=[[Lecture#Welcome| Welcome]], '''Keynote''': [[Lecture#Open-Source_Haptics_for_Music| Open-Source Haptics for Music]]
+|mainhall12=[[Workshop#OpenAV_on_Fabla2| OpenAV on Fabla2]]
+|mainhall15=[[Workshop#Plugin_Programming_with_Faust| Plugin Programming with Faust]]
+|mainhall17=[[Workshop#Yet_Same_Old_Qstuff.2A_.28continued.29|Yet Same Old QStuff* (continued)]]
+|mainhall21=[[LinuxSoundNight|Linux Sound Night]]
+|mainhall23=[[LinuxSoundNight|Linux Sound Night]]
+|seminarroom12=[[Workshop#Linux_Live_on_Stage_-_SuperBoucle.2C_Carla.2C_Faust_.26_LV2_Plugins| Linux Live on Stage - SuperBoucle, Carla, Faust & LV2 Plugins]]
+|seminarroom15=[[Lecture#The_Haptic_Hand| The Haptic Hand]]
+|seminarroom17=[[Workshop#Canorus - A next generation open source music score editor|Canorus - A next generation open source music score editor]]
+|soundlab12=[[Lecture#Stepp0r a renoise plugin|Stepp0r a renoise plugin]]
+|soundlab15=[[Workshop#Essential Aspects on Mixing|Essential Aspects on Mixing]]
+|soundlab17=[[Workshop#loop - Open educational instruments made in pure data|loop - Open educational instruments made in pure data]]
+|upperdeck21=[[LinuxSoundNight|Linux Sound Night]]
+|upperdeck23=[[LinuxSoundNight|Linux Sound Night]]
+}}
+
+== Organisation ==
+This is the helper's table to organize shifts! [[Volunteer]]!
+{{
+Schedule
+|day=Saturday (20160409)
+|mainhall10=[[User:dave|dave]], [[User:riot|riot]], [[User:excds|excds]], [[User:bgola|bgola]] ([[Volunteer#Video_Angel|VA]])
+|mainhall15=[[User:RedFrik|RedFrik]] ([[Volunteer#General_Angel|RA]])
+|mainhall17=[[User:RedFrik|RedFrik]] ([[Volunteer#General_Angel|RA]])
+|mainhall21=[[User:dave|dave]], [[User:riot|riot]], [[User:excds|excds]], [[User:bgola|bgola]]
+|mainhall23=[[User:dave|dave]], [[User:riot|riot]], [[User:excds|excds]], [[User:bgola|bgola]]
+|upperdeck21=[[User:dave|dave]], [[User:riot|riot]], [[User:excds|excds]], [[User:bgola|bgola]]
+|upperdeck23=[[User:dave|dave]], [[User:riot|riot]], [[User:excds|excds]], [[User:bgola|bgola]]
+
+}}
+
+= Sunday =
+== Timetable ==
+{{
+Schedule
+|day=Sunday (20160410)
+|mainhall10=[[Lecture#LAC is dead! Long live miniLAC!|LAC is dead! Long live miniLAC!]]
+|mainhall12=[[Lecture#On Hobbyist Software|On Hobbyist Software]], [[Lecture#Modal_Synthesis_using_Synth-A-Modeler|Modal Synthesis using Synth-A-Modeler]]
+|mainhall15=[[Workshop#BELA_-_an_open-source_embedded_platform_for_low-latency_interactive_audio| Bela]]
+|mainhall17=[[Workshop#BELA_-_an_open-source_embedded_platform_for_low-latency_interactive_audio| Bela]]
+|seminarroom10=[[Lecture#The_Public_Domain_Project_-_Building_a_long_term_music_archive_with_open_source_and_crowd_sourcing|The Public Domain Project]]
+|seminarroom12=[[Hacking#Let's make some plugins!|Let's make some plugins!]]
+|seminarroom15=[[Hacking#Publishing your LV2 plugins to the MOD Cloud|Publishing your LV2 plugins to the MOD Cloud]]
+|seminarroom17=[[Workshop#Getting to know Yoshimi|Getting to know Yoshimi]]
+|soundlab10=[[Workshop#Introduction_to_microphony|Introduction to microphony]]
+|soundlab12=[[Workshop#One Hour Challenge|One Hour Challenge]]
+|soundlab15=[[Workshop#Physical_Modeling_using_Synth-A-Modeler|Physical Modeling using Synth-A-Modeler (starting at 16:00)]]
+|soundlab17=[[Workshop#Physical_Modeling_using_Synth-A-Modeler|Physical Modeling using Synth-A-Modeler (ending at 18:00)]]
+}}
+
+== Organisation ==
+This is the helper's table to organize shifts! [[Volunteer]]!
+{{
+Schedule
+|day=Sunday (20160410)
+|mainhall10=[[User:Dave|dave]] ([[Volunteer#General_Angel|GA]]), [[User:Riot|riot]] ([[Volunteer#Room_Angel|RA]]), [[User:excds|excds]] ([[Volunteer#Video_Angel|VA]])
+|mainhall15=[[User:RedFrik|RedFrik]] ([[Volunteer#General_Angel|RA]])
+|mainhall17=[[User:RedFrik|RedFrik]] ([[Volunteer#General_Angel|RA]])
+|seminarroom10=[[User:Bgola|bgola]] ([[Volunteer#Video_Angel|VA]])
+}}
+
+[[Category:miniLAC]]
+
