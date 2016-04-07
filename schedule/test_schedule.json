@@ -1,0 +1,111 @@
+{
+    "conference": {
+        "acronym": "miniLAC16",
+        "basedate": "2016-04-08",
+        "language": "en",
+        "title": "Mini Linux Audio Conference 2016",
+        "license": "CC-BY-SA",
+        "timezone": "Europe/Berlin"
+    },
+    "events": [
+        {
+            "room": "Soundlab",
+            "type": "Lecture",
+            "title": "Stepp0r a renoise plugin",
+            "description": "I presented my plugin unofficial at the LAC2015. People liked it, and said I should create a presentation about it. This time I will present the plugin and talk about future plans (and maybe encourage people to join the project :D)",
+            "license": "CC-BY-SA",
+            "people": "Palo",
+            "start": "18:45",
+            "duration": "00:45",
+            "day": "0"
+        },
+        {
+            "room": "Mainhall",
+            "type": "Lecture",
+            "title": "Open-Source Haptics for Music",
+            "description": " I have created several open-source software and hardware repositories for integrating haptic technology into music performance including 1) the FireFader Arduino-based haptic device, which can be easily customized for a wide array of haptics applications, 2) Synth-A-Modeler, a modular physical modeling environment that integrates together the digital waveguide, mass-interaction, and modal synthesis paradigms,  and 3) the HSP library of objects for physical modeling in pd/Max. These open-source repositories will be explained using a series of musical examples, showing how the repositories can be used for discovering and exploring new frontiers in digital music. Interested community members can gain practical experience during the Sunday afternoon/evening workshop.",
+            "license": "CC-BY-SA",
+            "people": "Edgarberdahl",
+            "start": "10:30",
+            "duration": "00:50",
+            "day": "0"
+        },
+        {
+            "room": "Mainhall",
+            "type": "Lecture",
+            "title": "On Hobbyist Software",
+            "description": "Talk addresses the specific character of software, written as a hobby, and what a user, unfamiliar with a hobbyist community and the body of hobbyist software, should expect from such software in terms of usability and functionality. Additionally, I give my views on why such things should be expected.  First version of the talk was given at a Linux Audio meeting in K\u00f6ln: https://www.youtube.com/watch?v=JlaBuFfkQdM",
+            "license": "CC-BY-SA",
+            "people": "Louigi_Verona",
+            "start": "12:00",
+            "duration": "00:40",
+            "day": "1"
+        },
+        {
+            "room": "Mainhall",
+            "type": "Lecture",
+            "title": "The Haptic Hand",
+            "description": "  The haptic hand is a greatly simplified robotic hand that is designed to mirror the human hand and provide haptic force feedback for applications in music. The \"fingers\" of the haptic hand device are laid out to align with four of the fingers of the human hand. A key is placed on each of the \"fingers\" so that a human hand can perform music by interacting with the keys. The haptic hand is distinguished from other haptic keyboards in the sense that each finger is meant to stay with a particular key. The haptic hand promotes unencumbered interaction with the keys. The user can easily position a finger over a key and press downward to activate it\u2013\u2013the user does not need to insert his or her fingers into an unwieldy exoskeleton or set of thimbles. An example video demonstrates some musical ideas afforded by this open-source software and hardware project.",
+            "license": "CC-BY-SA",
+            "people": "Denis Huber",
+            "start": "14:45",
+            "duration": "00:15",
+            "day": "0"
+        },
+        {
+            "room": "Mainhall",
+            "type": "Lecture",
+            "title": "Modal Synthesis using Synth-A-Modeler",
+            "description": "  Modal synthesis is a sound synthesis technique that bridges the gap between traditional \"unidirectional\" signal processing and computer simulation of acoustic phenomena. After explaining the theory of modal synthesis, example models in Synth-A-Modeler will be presented to demonstrate how modal synthesis can be used for music composition. Finally, an excerpt from Zak Berkowitz's composition *Calder Song* will be played to demonstrate how modal resonators can be situated in space.",
+            "license": "CC-BY-SA",
+            "people": "Pascal Kaap, Zak Berkowitz",
+            "start": "13:00",
+            "duration": "00:15",
+            "day": "1"
+        },
+        {
+            "room": "Mainhall",
+            "type": "Lecture",
+            "title": "LAC is dead! Long live miniLAC!",
+            "description": "This meta lecture is about the process of doing a Linux Audio Conference. I'd like to talk about: * what the process was like for us as a loose community * what the pitfalls were * what improvements we'd like to see (for us and for all future organizers) * what we as a community can do  I'd like to see this end in an open discussion about the general organizational topics, inviting outsiders to have a glimpse at the process and connect with potential helpful institutions and persons.",
+            "license": "CC-BY-SA",
+            "people": "Dave, riot",
+            "start": "10:00",
+            "duration": "01:30",
+            "day": "1"
+        },
+        {
+            "room": "",
+            "type": "Lecture",
+            "title": "The Public Domain Project - Building a long term music archive with open source and crowd sourcing",
+            "description": " The volunteer driven [http://publicdomainproject.org/ Public Domain Project] goals are to collect, digitize and make freely available audio records which in the public domain (no copyrights on it anymore). Our project is comparable to what the Gutenberg Project is doing for books or the IMSLP is doing for scores. For creative people our project makes available a great source of music to inspire you and you are free to use this music in every-way. Such a project has very different requirements on the software and formats used than for example a music studio. But because of the underlying core values of FOSS several projects are of great help for our work and will help us to minimize the risk of technological obsolescence.  I will present our project, what and how we are doing, the free software we are using (and the few gaps) and what will come in the next time (as 2016 will be a great step forward).",
+            "license": "CC-BY-SA",
+            "people": "nuess0r",
+            "start": "10:00",
+            "duration": "00:45",
+            "day": "1"
+        },
+        {
+            "room": "Mainhall",
+            "type": "Lecture",
+            "title": "Opening",
+            "description": "Dave, excds and riot say hello, introduce the place and themselves. You know the drill.",
+            "license": "CC-BY-SA",
+            "people": "Dave, Excds, riot",
+            "start": "10:00",
+            "duration": "00:15",
+            "day": "0"
+        },
+        {
+            "room": "Mainhall",
+            "type": "Lecture",
+            "title": "Closing",
+            "description": "Dave, excds and riot wrap things up and say goodbye. You've been there!",
+            "license": "CC-BY-SA",
+            "people": "Dave, Excds, riot",
+            "start": "soon",
+            "duration": "00:30",
+            "day": "any"
+        }
+    ]
+}

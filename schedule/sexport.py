@@ -36,8 +36,11 @@ rooms = [
     'Soundlab'
 ]
 
-def stripImages(description):
-    wobble = description
+def strip_tags(markup):
+    markup = markup.lstrip().rstrip()
+    if "[[" not in markup:
+        return markup
+    wobble = markup
     ham = ""
     while '[[' in wobble:
         wibble, wobble = wobble.split("[[", maxsplit=1)
@@ -48,20 +51,25 @@ def stripImages(description):
         if spam.startswith('User'):
             print("Found a user: ", spam)
             ham += str(spam.split("|")[1])
+        if spam in rooms:
+            print("Room encountered")
+            ham += spam
         elif spam.startswith('Image'):
             print("Found an image: ", spam)
-    print(ham)
+
+    ham += wobble
 
     return ham
 
 
-def getEvents(eventtype="Lecture"):
+def get_events(eventtype="Lecture"):
     webdata = requests.get(baseurl % eventtype)
 
     # pprint(webdata.json(), indent=1)
 
     wikidata = "".join(list(webdata.json()['parse']['wikitext']['*']))
     rawevents = []
+    events = []
 
     for no, part in enumerate(wikidata.split("{{Template:" + eventtype)):
         if not no == 0:
@@ -76,9 +84,7 @@ def getEvents(eventtype="Lecture"):
         print(rawevent)
         event = {
             'title': '',
-            'subtitle': '',
             'room': '',
-            'track': '',  # optional
             'day': 0,  # only valid when basedate is given, use full datetime in 'start' otherwise
             'start': '',  # can be a whole ISO datetime, otherwise, 'basedate' is used as a base
             'duration': '01:00',  # alternative: 'end'
@@ -86,18 +92,10 @@ def getEvents(eventtype="Lecture"):
             'people': '',  # can be an array. alias: 'persons'
 
             'type': eventtype,  # optional. default: lecture
-            'optout': False,  # optional. default: false
             'license': 'CC-BY-SA',  # optional
-            'language': '',  # optional, if given in 'conference' section
 
-            'abstract': '',  # optional
+
             'description': '',  # optional
-            'links': [  # optional
-                {
-                    'href': '',
-                    'text': 'Null'
-                }
-            ]
         }
 
         for no, line in enumerate(rawevent):
@@ -108,47 +106,33 @@ def getEvents(eventtype="Lecture"):
             pprint(split)
 
             if split[0] == 'description':
-                description = "".join(rawevent[no:]).split("|description=")[1]
+                description = " ".join(rawevent[no:]).split("|description=")[1]
                 description = description.lstrip().rstrip()
-                description = stripImages(description)
+                description = strip_tags(description)
                 event['description'] = description
                 break
             if split[0] in event.keys():
-                event[split[0]] = split[1]
+                event[split[0]] = strip_tags(split[1])
 
         pprint(event)
+        events.append(event)
 
         # pprint(rawevents)
 
+    return events
 
-def generate_schedule(args):
-    def processday(day):
-        stuff = day.split("Schedule")[1]
-        stuff = stuff.split("}}")[0]
-        print("-" * 23)
-        pprint(stuff)
-
-    inputlines = ""
-    with open(args.inputfile) as f:
-        for line in f:
-            inputlines += line
-
-    parts = inputlines.split("Timetable")
-    parts.remove(parts[0])
-    print(len(parts))
-    for day in parts:
-        print("#" * 23)
-        processday(day)
-
-    grab = False
-    date = None
+def generate_schedule(events):
+    conference['events'] = events
+    return conference
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--inputfile", help="Specify input filename", type=str, default="input.wiki")
+    parser.add_argument("--outputfile", help="Specify output filename", type=str, default="schedule.json")
 
     args = parser.parse_args()
 
-    getEvents()
-    # generate_schedule(args)
+    events = get_events()
+
+    with open(args.outputfile, "w") as f:
+        json.dump(generate_schedule(events), f, indent=4)
