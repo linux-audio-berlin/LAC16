@@ -6,17 +6,17 @@
 #
 # GPLv3
 
-__author__ = 'riot'
-
-import sys
 from pprint import pprint
 import argparse
 import requests
 import json
 
+__author__ = 'riot'
+
 DEBUG = False
 
-baseurl = "http://minilac.linuxaudio.org/api.php?action=parse&page=%s&prop=wikitext&format=json"
+baseurl = "http://minilac.linuxaudio.org/api.php?action=parse&page=%s&prop" \
+          "=wikitext&format=json"
 
 conference = {
     'conference': {
@@ -37,6 +37,7 @@ rooms = [
     'Upper-deck',
     'Soundlab'
 ]
+
 
 def strip_tags(markup):
     markup = markup.lstrip().rstrip()
@@ -99,8 +100,14 @@ def get_events(eventtype="Lecture"):
             'title': '',
             'id': 0,
             'room': '',
-            'day': 0,  # only valid when basedate is given, use full datetime in 'start' otherwise
-            'start': '',  # can be a whole ISO datetime, otherwise, 'basedate' is used as a base
+
+            # only valid when basedate is given, use full datetime in
+            # 'start' otherwise
+            'day': 0,
+
+            # can be a whole ISO datetime, otherwise, 'basedate' is used as
+            # a base
+            'start': '',
             'duration': '01:00',  # alternative: 'end'
 
             'people': '',  # can be an array. alias: 'persons'
@@ -115,10 +122,13 @@ def get_events(eventtype="Lecture"):
         for no, line in enumerate(rawevent):
             if DEBUG:
                 print(line)
-            split = line[1:].split("=")  # Cut off pipe, then split into k,v pair
+            split = line[1:].split(
+                "=")  # Cut off pipe, then split into k,v pair
             if len(split) > 2:
                 if DEBUG:
-                    print("Oh, my, a raw event line with more than key and value!")
+                    print(
+                        "Oh, my, a raw event line with more than key and "
+                        "value!")
             if DEBUG:
                 pprint(split)
 
@@ -134,7 +144,8 @@ def get_events(eventtype="Lecture"):
                         split[1] = int(split[1])
                     except TypeError:
                         if DEBUG:
-                            print("Malformed ID or day in event! Appending string for inspection.")
+                            print("Malformed ID or day in event! "
+                                  "Appending string for inspection.")
                     event[split[0]] = split[1]
                 else:
                     event[split[0]] = strip_tags(split[1])
@@ -146,6 +157,7 @@ def get_events(eventtype="Lecture"):
         # pprint(rawevents)
 
     return events
+
 
 def generate_schedule():
     lectures = get_events('Lecture')
@@ -159,8 +171,12 @@ def generate_schedule():
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--outputfile", help="Specify output filename", type=str, default="schedule.json")
-    parser.add_argument("--debug", help="Printout debug info to STDOUT(!)", action="store_true")
+    parser.add_argument("--outputfile",
+                        help="Specify output filename",
+                        type=str,
+                        default="schedule.json")
+    parser.add_argument("--debug", help="Printout debug info to STDOUT(!)",
+                        action="store_true")
 
     args = parser.parse_args()
 
