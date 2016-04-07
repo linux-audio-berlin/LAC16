@@ -33,8 +33,8 @@ conference = {
 rooms = [
     'Mainhall',
     'Weltenbaulab',
-    'Seminar_room',
-    'Upper_Deck',
+    'Seminar room',
+    'Upper-deck',
     'Soundlab'
 ]
 
