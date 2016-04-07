@@ -24,7 +24,7 @@ conference = {
         'title': 'Mini Linux Audio Conference 2016',
         'basedate': '2016-04-08',
         'timezone': 'Europe/Berlin',
-        'license': 'CC-BY-SA',
+        'license': 'CC-BY-SA-4.0',
         'language': 'en'
     },
     'events': {}
