@@ -8,11 +8,13 @@
 
 __author__ = 'riot'
 
-from os import environ
+import sys
 from pprint import pprint
 import argparse
 import requests
 import json
+
+DEBUG = False
 
 baseurl = "http://minilac.linuxaudio.org/api.php?action=parse&page=%s&prop=wikitext&format=json"
 
@@ -38,10 +40,14 @@ rooms = [
 
 def strip_tags(markup):
     markup = markup.lstrip().rstrip()
+    markup = markup.replace("'''", "")
+
     if "[[" not in markup:
         return markup
+
     wobble = markup
     ham = ""
+
     while '[[' in wobble:
         wibble, wobble = wobble.split("[[", maxsplit=1)
         ham += wibble
@@ -49,13 +55,16 @@ def strip_tags(markup):
         spam, wobble = wobble.split("]]", maxsplit=1)
 
         if spam.startswith('User'):
-            print("Found a user: ", spam)
+            if DEBUG:
+                print("Found a user: ", spam)
             ham += str(spam.split("|")[1])
         if spam in rooms:
-            print("Room encountered")
+            if DEBUG:
+                print("Room encountered")
             ham += spam
         elif spam.startswith('Image'):
-            print("Found an image: ", spam)
+            if DEBUG:
+                print("Found an image: ", spam)
 
     ham += wobble
 
@@ -65,7 +74,8 @@ def strip_tags(markup):
 def get_events(eventtype="Lecture"):
     webdata = requests.get(baseurl % eventtype)
 
-    # pprint(webdata.json(), indent=1)
+    if DEBUG:
+        pprint(webdata.json(), indent=1)
 
     wikidata = "".join(list(webdata.json()['parse']['wikitext']['*']))
     rawevents = []
@@ -73,17 +83,21 @@ def get_events(eventtype="Lecture"):
 
     for no, part in enumerate(wikidata.split("{{Template:" + eventtype)):
         if not no == 0:
-            print("#" * 5)
+            if DEBUG:
+                print("#" * 5)
             part = part.split("}}")[0]
 
-            print(part)
+            if DEBUG:
+                print(part)
             rawevents.append(part)
 
     for rawevent in rawevents:
         rawevent = rawevent.split("\n")
-        print(rawevent)
+        if DEBUG:
+            print(rawevent)
         event = {
             'title': '',
+            'id': 0,
             'room': '',
             'day': 0,  # only valid when basedate is given, use full datetime in 'start' otherwise
             'start': '',  # can be a whole ISO datetime, otherwise, 'basedate' is used as a base
@@ -99,11 +113,14 @@ def get_events(eventtype="Lecture"):
         }
 
         for no, line in enumerate(rawevent):
-            print(line)
+            if DEBUG:
+                print(line)
             split = line[1:].split("=")  # Cut off pipe, then split into k,v pair
             if len(split) > 2:
-                print("Oh, my, a raw event line with more than key and value!")
-            pprint(split)
+                if DEBUG:
+                    print("Oh, my, a raw event line with more than key and value!")
+            if DEBUG:
+                pprint(split)
 
             if split[0] == 'description':
                 description = " ".join(rawevent[no:]).split("|description=")[1]
@@ -112,27 +129,43 @@ def get_events(eventtype="Lecture"):
                 event['description'] = description
                 break
             if split[0] in event.keys():
-                event[split[0]] = strip_tags(split[1])
+                if split[0] in ('id', 'day'):
+                    try:
+                        split[1] = int(split[1])
+                    except TypeError:
+                        if DEBUG:
+                            print("Malformed ID or day in event! Appending string for inspection.")
+                    event[split[0]] = split[1]
+                else:
+                    event[split[0]] = strip_tags(split[1])
 
-        pprint(event)
+        if DEBUG:
+            pprint(event)
         events.append(event)
 
         # pprint(rawevents)
 
     return events
 
-def generate_schedule(events):
-    conference['events'] = events
+def generate_schedule():
+    lectures = get_events('Lecture')
+    workshops = get_events('Workshop')
+    hacksessions = get_events('Hacking')
+
+    all_events = lectures + workshops + hacksessions
+    conference['events'] = all_events
     return conference
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--outputfile", help="Specify output filename", type=str, default="schedule.json")
+    parser.add_argument("--debug", help="Printout debug info to STDOUT(!)", action="store_true")
 
     args = parser.parse_args()
 
-    events = get_events()
+    if args.debug:
+        DEBUG = True
 
     with open(args.outputfile, "w") as f:
-        json.dump(generate_schedule(events), f, indent=4)
+        json.dump(generate_schedule(), f, indent=4)
