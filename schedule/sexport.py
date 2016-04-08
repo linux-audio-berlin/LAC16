@@ -219,11 +219,12 @@ def get_infobeamer_events():
             'unix': unixtime,
             'duration': duration,
             'speakers': event['people'].split(", "),
+            'lines': event['description'][:200].split("."),
             'lang': 'en',
             'start': event['start']
         }
-        if len(new['title']) == 100:
-            new['title'] += " - for more information, check the wiki."
+        if len(new['lines']) == 100:
+            new['lines'] += " - for more information, check the wiki."
 
         infobeamer_events.append(new)
 
