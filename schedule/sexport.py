@@ -277,7 +277,8 @@ if __name__ == "__main__":
             webdatacache = json.load(f)
 
     with open(args.outputfile, "w") as f:
-        json.dump(generate_schedule(args.scheduletype), f, indent=4)
+        json.dump(generate_schedule(args.scheduletype), f, indent=4,
+                  sort_keys=True)
 
     if args.writecache and not args.offline:
         with open(args.cachefile, "w") as f:
