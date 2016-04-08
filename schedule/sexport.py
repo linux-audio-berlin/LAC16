@@ -11,6 +11,8 @@ import argparse
 import requests
 import json
 import sys
+import pytz
+import calendar
 
 __author__ = 'riot'
 
@@ -113,7 +115,8 @@ def get_events(eventtype="Lecture"):
             print(rawevent)
         event = {
             'title': '',
-            'id': 0,
+            'type': eventtype,
+            'id': 1,
             'room': '',
 
             # only valid when basedate is given, use full datetime in
@@ -156,7 +159,10 @@ def get_events(eventtype="Lecture"):
             if split[0] in event.keys():
                 if split[0] in ('id', 'day'):
                     try:
-                        split[1] = int(split[1])
+                        if split[0] == 'id':
+                            split[1] = int(split[1]) + 1
+                        else:
+                            split[1] = int(split[1])
                     except TypeError:
                         if DEBUG:
                             print("Malformed ID or day in event! "
@@ -188,32 +194,42 @@ def get_infobeamer_events():
         duration = event['duration'].split(":")
 
         # TODO: Fetch static parts from conference metadata above
-        start = datetime(2016, 4, 9 + int(event['day']), int(hours[0]),
-                         int(hours[1]))
-        duration = timedelta(hours=int(duration[0]), minutes=int(
-            duration[1]))
-        stop = start + duration
+        start = datetime(2016, 4, 9 + int(event['day']), hour=int(hours[0]),
+                         minute=int(hours[1]), tzinfo=pytz.utc) #pytz.timezone(
+                #"Europe/Berlin"))
+        #print(start)
+        #print(hours)
+
+
+        #print(start)
+        unixtime = int(calendar.timegm(start.timetuple()))
+        # TODO: Mean hack, we should do that better:
+        unixtime -= (120*60)
+        #print("This is the timestamp:", unixtime)
+        duration = (int(duration[0]) * 60 + int(duration[1]))
+        stop = unixtime + int(duration) * 60
         if DEBUG:
             print(event['room'], start, stop, event['title'])
 
         new = {
-            'short_title': event['title'],
-            'title': event['title'][:100],
+            'title': event['title'],
             'event_id': event['id'],
             'place': event['room'],
-            'stop': (stop - datetime(1970, 1, 1)).total_seconds(),
-            'start': (start - datetime(1970, 1, 1)).total_seconds(),
-            'duration': int(duration.seconds / 60),
-            'speakers': event['people'],
+            'unix_end': stop,
+            'unix': unixtime,
+            'duration': duration,
+            'speakers': event['people'].split(", "),
             'lang': 'en',
-            'nice_start': event['start']
+            'start': event['start']
         }
         if len(new['title']) == 100:
             new['title'] += " - for more information, check the wiki."
 
         infobeamer_events.append(new)
 
-    return infobeamer_events
+    sortedlist = sorted(infobeamer_events, key=lambda k: k['unix'])
+
+    return sortedlist
 
 
 def get_voc_events():
