@@ -13,6 +13,7 @@ import json
 import sys
 import pytz
 import calendar
+import uuid
 
 __author__ = 'riot'
 
@@ -26,7 +27,7 @@ conference = {
     'conference': {
         'acronym': 'miniLAC16',
         'title': 'Mini Linux Audio Conference 2016',
-        'basedate': '2016-04-08',
+        'basedate': '2016-04-09',
         'timezone': 'Europe/Berlin',
         'license': 'CC-BY-SA-4.0',
         'language': 'en'
@@ -239,6 +240,10 @@ def get_voc_events():
     hacksessions = get_events('Hacking')
 
     all_events = lectures + workshops + hacksessions
+
+    for event in all_events:
+        event['day'] += 1
+        event['guid'] = str(uuid.uuid4())
 
     return all_events
 
